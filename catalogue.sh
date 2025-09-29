@@ -1,7 +1,8 @@
 #?/bin/bash
+source ./common.sh
 root_check
 app_name=catalogue
-source ./common.sh
+
 
 
 
@@ -15,7 +16,7 @@ VALIDATE $? "Copy mongo repo"
 dnf install mongodb-mongosh -y &>>$FILE_LOG
 VALIDATE $? "Install MongoDB client"
 
-INDEX=$(mongosh mongodb.daws86s.fun --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
+INDEX=$(mongosh mongodb.msgd.fun --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
 if [ $INDEX -le 0 ]; then
     mongosh --host $MONGODB_HOST </app/db/master-data.js &>>$FILE_LOG
     VALIDATE $? "Load catalogue products"
