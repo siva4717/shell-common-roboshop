@@ -19,5 +19,5 @@ VALIDATE $? "Systemctl start"
 sed -i "s/127.0.0.1/0.0.0.0/g" /etc/mongod.conf &>>$FILE_LOG    
 VALIDATE $? "allowing remote connections mongodb" 
 
-system_restart
+
 script_running_time
