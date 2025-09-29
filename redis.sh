@@ -15,5 +15,10 @@ VALIDATE $? "Enable Redis"
 sed -i -e 's/127.0.0.1/0.0.0.0/' -e '/protected-mode/ c protected-mode no' /etc/redis/redis.conf &>>$FILE_LOG  
 VALIDATE $? "Allowing remote connections and protected-mode no"
 
-systemd_restart
+systemctl enable redis &>>$FILE_LOG
+VALIDATE $? "Enable Redis"
+
+systemctl start redis  &>>$FILE_LOG
+VALIDATE $? "Start Redis"
+
 script_running_time
