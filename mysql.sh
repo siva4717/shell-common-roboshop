@@ -1,7 +1,7 @@
 #?/bin/bash
 source ./common.sh
 root_check
-app_name=mysqld
+app_name=mysql
 
 
 dnf install mysql-server -y &>>$FILE_LOG
