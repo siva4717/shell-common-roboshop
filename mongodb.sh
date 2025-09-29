@@ -1,6 +1,6 @@
 #?/bin/bash
 source ./common.sh
-app_name=mongod
+
 
 root_check
 
@@ -19,5 +19,7 @@ VALIDATE $? "Systemctl start"
 sed -i -e "s/127.0.0.1/0.0.0.0/g" /etc/mongod.conf &>>$FILE_LOG    
 VALIDATE $? "allowing remote connections mongodb" 
 
-systemd_restart
+systemctl restart mongod
+VALIDATE $? "Restarted MongoDB"
+
 script_running_time
