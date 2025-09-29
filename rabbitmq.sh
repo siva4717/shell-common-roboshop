@@ -8,7 +8,7 @@ VALIDATE $? "Adding RabbitMQ repo"
 dnf install rabbitmq-server -y &>>$LOG_FILE
 VALIDATE $? "Installing RabbitMQ Server"
 
-systemctl
+systemd_restart
 
 rabbitmqctl add_user roboshop roboshop123 &>>$LOG_FILE
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>$LOG_FILE

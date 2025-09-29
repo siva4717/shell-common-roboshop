@@ -80,7 +80,7 @@ app_setup(){
 }
 
 #systemctl service
-systemctl(){
+systemd_restart(){
     systemctl daemon-reload
     systemctl enable $app_name &>>$LOG_FILE
     VALIDATE $? "Enable $app_name"

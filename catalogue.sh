@@ -21,7 +21,7 @@ else
     echo -e "Catalogue products already loaded ... $Y SKIPPING $N"
 fi
 
-systemctl
+systemd_restart
 system_restart
 script_running_time
 

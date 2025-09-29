@@ -15,7 +15,7 @@ VALIDATE $? "mvn clean package"
 mv target/shipping-1.0.jar shipping.jar  
 VALIDATE $? "move the shipping.jar file"
 
-systemctl
+systemd_restart
 
 dnf install mysql -y  &>>$FILE_LOG
 

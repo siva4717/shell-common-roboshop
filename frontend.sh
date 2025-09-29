@@ -14,7 +14,7 @@ VALIDATE $? "Enable NGINX version 1.24"
 dnf install nginx -y &>> $FILE_LOG
 VALIDATE $? "Installing NGINX"
 
-systemctl
+systemd_restart
 
 rm -rf /usr/share/nginx/html/*  &>> $FILE_LOG
 VALIDATE $? " Remove NGINX html file"

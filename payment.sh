@@ -12,5 +12,5 @@ app_setup
 pip3 install -r requirements.txt &>>$FILE_LOG
 VALIDATE $? "mvn clean package" 
 
-systemctl
+systemd_restart
 script_running_time
