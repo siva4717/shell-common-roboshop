@@ -19,11 +19,11 @@ systemd_restart
 
 dnf install mysql -y  &>>$FILE_LOG
 
-mysql -h $MYSQL_HOST -uroot -pRoboShop@1 -e 'use cities' &>>$LOG_FILE
+mysql -h $MYSQL_HOST -uroot -pRoboShop@1 -e 'use cities' &>>$FILE_LOG
 if [ $? -ne 0 ]; then
-    mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/schema.sql &>>$LOG_FILE
-    mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/app-user.sql  &>>$LOG_FILE
-    mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/master-data.sql &>>$LOG_FILE
+    mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/schema.sql &>>$FILE_LOG
+    mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/app-user.sql  &>>$FILE_LOG
+    mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/master-data.sql &>>$FILE_LOG
 else
     echo -e "Shipping data is already loaded ... $Y SKIPPING $N"
 fi
