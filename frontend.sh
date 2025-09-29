@@ -3,7 +3,7 @@ source ./common.sh
 app_name=nginx
 root_check
 
-cp SCRIPT_DIRECTORY/nginx.conf /etc/nginx/nginx.conf &>> $FILE_LOG
+cp $script_dir/nginx.conf /etc/nginx/nginx.conf &>> $FILE_LOG
 
 dnf module disable nginx -y &>> $FILE_LOG
 VALIDATE $? "Disable NGINX"
