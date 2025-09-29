@@ -37,21 +37,21 @@ VALIDATE(){
 
 ##### NodeJS ####
 nodejs_setup(){
-    dnf module disable nodejs -y &>>$LOG_FILE
+    dnf module disable nodejs -y &>>$FILE_LOG
     VALIDATE $? "Disabling NodeJS"
-    dnf module enable nodejs:20 -y  &>>$LOG_FILE
+    dnf module enable nodejs:20 -y  &>>$FILE_LOG
     VALIDATE $? "Enabling NodeJS 20"
-    dnf install nodejs -y &>>$LOG_FILE
+    dnf install nodejs -y &>>$FILE_LOG
     VALIDATE $? "Installing NodeJS"
-    npm install &>>$LOG_FILE
+    npm install &>>$FILE_LOG
     VALIDATE $? "Install dependencies"
 }
 
 #system-user
 system_user(){
-    id roboshop &>>$LOG_FILE
+    id roboshop &>>$FILE_LOG
     if [ $? -ne 0 ]; then
-        useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOG_FILE
+        useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$FILE_LOG
         VALIDATE $? "Creating system user"
     else
         echo -e "User already exist ... $Y SKIPPING $N"
@@ -63,7 +63,7 @@ app_setup(){
     mkdir -p /app
     VALIDATE $? "Creating app directory"
 
-    curl -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip &>>$LOG_FILE
+    curl -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip &>>$FILE_LOG
     VALIDATE $? "Downloading $app_name application"
 
     cd /app 
@@ -72,17 +72,17 @@ app_setup(){
     rm -rf /app/*
     VALIDATE $? "Removing existing code"
 
-    unzip /tmp/$app_name.zip &>>$LOG_FILE
+    unzip /tmp/$app_name.zip &>>$FILE_LOG
     VALIDATE $? "unzip $app_name"
 
-    cp $SCRIPT_DIR/$app_name.service /etc/systemd/system/$app_name.service
+    cp $script_dir/$app_name.service /etc/systemd/system/$app_name.service
     VALIDATE $? "Copy systemctl service"
 }
 
 #systemctl service
 systemd_restart(){
     systemctl daemon-reload
-    systemctl enable $app_name &>>$LOG_FILE
+    systemctl enable $app_name &>>$FILE_LOG
     VALIDATE $? "Enable $app_name"
 }
 
