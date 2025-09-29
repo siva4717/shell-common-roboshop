@@ -6,7 +6,6 @@ root_check
 dnf install maven -y &>>$FILE_LOG
 VALIDATE $? "Installing maven"
 
-system_user
 app_setup
 
 mvn clean package &>>$FILE_LOG

@@ -6,7 +6,6 @@ app_name=payment
 dnf install python3 gcc python3-devel -y &>>$FILE_LOG
 VALIDATE $? "Installing python3"
 
-system_user
 app_setup
 
 pip3 install -r requirements.txt &>>$FILE_LOG

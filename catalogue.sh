@@ -8,7 +8,6 @@ app_name=catalogue
 
 app_setup
 nodejs_setup
-system_user
 
 cp $script_dir/mongo.repo /etc/yum.repos.d/mongo.repo
 VALIDATE $? "Copy mongo repo"

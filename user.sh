@@ -5,7 +5,6 @@ app_name=user
 
 app_setup
 nodejs_setup
-system_user
 systemd_restart
 system_restart
 script_running_time

@@ -50,8 +50,10 @@ nodejs_setup(){
     VALIDATE $? "Install dependencies"
 }
 
-#system-user
-system_user(){
+
+
+#app_setup
+app_setup(){
     id roboshop &>>$FILE_LOG
     if [ $? -ne 0 ]; then
         useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$FILE_LOG
@@ -59,10 +61,6 @@ system_user(){
     else
         echo -e "User already exist ... $Y SKIPPING $N"
     fi
-}
-
-#app_setup
-app_setup(){
     mkdir -p /app
     VALIDATE $? "Creating app directory"
 
@@ -84,6 +82,8 @@ app_setup(){
 
 #systemctl service
 systemd_restart(){
+    cp $script_dir/$app_name.service /etc/systemd/system/$app_name.service
+    VALIDATE $? "Copy systemctl service"
     systemctl daemon-reload
     systemctl enable $app_name &>>$FILE_LOG
     VALIDATE $? "Enable $app_name"
