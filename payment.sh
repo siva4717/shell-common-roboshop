@@ -12,4 +12,5 @@ pip3 install -r requirements.txt &>>$FILE_LOG
 VALIDATE $? "mvn clean package" 
 
 systemd_restart
+system_restart
 script_running_time
