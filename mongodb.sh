@@ -1,6 +1,6 @@
 #?/bin/bash
 source ./common.sh
-app_name=mongodb
+app_name=mongod
 
 root_check
 
@@ -10,10 +10,10 @@ VALIDATE $? "Adding mongo repo"
 dnf install mongodb-org -y &>>$FILE_LOG
 VALIDATE $? "mongodb" 
 
-systemctl enable mongodb &>>$FILE_LOG
+systemctl enable mongod &>>$FILE_LOG
 VALIDATE $? "Systemctl enable" 
 
-systemctl start mongodb &>>$FILE_LOG
+systemctl start mongod &>>$FILE_LOG
 VALIDATE $? "Systemctl start" 
 
 sed -i "s/127.0.0.1/0.0.0.0/g" /etc/mongod.conf &>>$FILE_LOG    
