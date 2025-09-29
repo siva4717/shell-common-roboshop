@@ -14,7 +14,11 @@ VALIDATE $? "Enable NGINX version 1.24"
 dnf install nginx -y &>> $FILE_LOG
 VALIDATE $? "Installing NGINX"
 
-systemd_restart
+systemctl enable nginx  &>> $FILE_LOG
+VALIDATE $? "Enable NGINX"
+
+systemctl start nginx &>> $FILE_LOG 
+VALIDATE $? "Start NGINX"
 
 rm -rf /usr/share/nginx/html/*  &>> $FILE_LOG
 VALIDATE $? " Remove NGINX html file"
@@ -29,5 +33,6 @@ unzip /tmp/frontend.zip &>> $FILE_LOG
 VALIDATE $? "Unzip frontend.zip"
 
 
-system_restart
-script_running_time
+
+systemctl restart nginx  &>> $FILE_LOG
+VALIDATE $? "Restart    NGINX"
