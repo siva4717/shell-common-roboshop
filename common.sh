@@ -15,6 +15,7 @@ SCRIPT_NAME=$(echo $0 | cut -d '.' -f1)
 FILE_LOG=$FILE_LOG_DIRECTORY/$SCRIPT_NAME.log
 script_dir=$PWD
 MONGODB_HOST=mongodb.msgd.fun
+MYSQL_HOST="mysql.msgd.fun"
 START_TIME=$(date +'%s')
 
 mkdir -p $FILE_LOG_DIRECTORY 
