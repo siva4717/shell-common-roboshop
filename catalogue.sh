@@ -1,8 +1,10 @@
 #?/bin/bash
-source ./common.sh
-app_name=catalogue
-
 root_check
+app_name=catalogue
+source ./common.sh
+
+
+
 app_setup
 nodejs_setup
 system_user
