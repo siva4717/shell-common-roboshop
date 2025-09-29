@@ -14,7 +14,9 @@ FILE_LOG_DIRECTORY="/var/log/shell-roboshop/"
 SCRIPT_NAME=$(echo $0 | cut -d '.' -f1)
 FILE_LOG=$FILE_LOG_DIRECTORY/$SCRIPT_NAME.log
 script_dir=$PWD
+MONGODB_HOST=mongodb.msgd.fun
 START_TIME=$(date +'%s')
+
 mkdir -p $FILE_LOG_DIRECTORY 
 echo -e "$G The script Started at ::: $(date)$N"
 
