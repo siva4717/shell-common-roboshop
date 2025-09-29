@@ -78,13 +78,12 @@ app_setup(){
     unzip /tmp/$app_name.zip &>>$FILE_LOG
     VALIDATE $? "unzip $app_name"
 
+    cp $script_dir/$app_name.service /etc/systemd/system/$app_name.service
+    VALIDATE $? "Copy systemctl service"
 }
 
 #systemctl service
 systemd_restart(){
-    
-    cp $script_dir/$app_name.service /etc/systemd/system/$app_name.service
-    VALIDATE $? "Copy systemctl service"
     systemctl daemon-reload
     systemctl enable $app_name &>>$FILE_LOG
     VALIDATE $? "Enable $app_name"
