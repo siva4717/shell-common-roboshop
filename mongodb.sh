@@ -10,10 +10,10 @@ VALIDATE $? "Adding mongo repo"
 dnf install mongodb-org -y &>>$FILE_LOG
 VALIDATE $? "mongodb" 
 
-systemctl enable mongod &>>$FILE_LOG
+systemctl enable mongodb &>>$FILE_LOG
 VALIDATE $? "Systemctl enable" 
 
-systemctl start mongod &>>$FILE_LOG
+systemctl start mongodb &>>$FILE_LOG
 VALIDATE $? "Systemctl start" 
 
 sed -i "s/127.0.0.1/0.0.0.0/g" /etc/mongod.conf &>>$FILE_LOG    
